@@ -1,0 +1,36 @@
+2026-09-22 20:37:30,356 [INFO] Processing file: olist_orders_dataset_20260922.csv
+2026-09-22 20:37:30,866 [INFO] Successfully read file: olist_orders_dataset_20260922.csv with rows 99441
+2026-09-22 20:40:42,765 [INFO] Processing file: olist_orders_dataset_20260922.csv
+2026-09-22 20:40:43,054 [INFO] Successfully read file: olist_orders_dataset_20260922.csv with rows 99441
+2026-09-22 20:43:18,600 [INFO] Processing file: olist_orders_dataset_20260922.csv
+2026-09-22 20:43:19,124 [INFO] Successfully read file: olist_orders_dataset_20260922.csv with rows 99441
+2026-09-22 20:43:46,508 [INFO] Processing file: olist_orders_dataset_20260922.csv
+2026-09-22 20:43:47,035 [INFO] Successfully read file: olist_orders_dataset_20260922.csv with rows 99441
+2026-09-23 08:24:52,672 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:24:53,072 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:25:31,863 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:25:32,260 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:25:53,240 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:25:53,488 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:25:53,769 [INFO] Starting transformation step...
+2026-09-23 08:26:56,300 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:26:56,791 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:26:56,996 [INFO] Starting transformation step...
+2026-09-23 08:26:57,399 [INFO] Transformed dataset saved to C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean.parquet
+2026-09-23 08:36:18,714 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:36:19,156 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:36:19,331 [INFO] Starting transformation step...
+2026-09-23 08:36:19,496 [INFO] Transformed dataset saved to C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean_20260923.parquet
+2026-09-23 08:36:32,008 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:36:32,584 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:36:32,842 [INFO] Starting transformation step...
+2026-09-23 08:36:33,135 [INFO] Transformed dataset saved to C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean_20260923.parquet
+2026-09-23 08:36:33,210 [INFO] Starting Load step...
+2026-09-23 08:36:33,368 [INFO] Loaded data from C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean_20260923.parquet into DuckDB table 'orders'
+2026-09-23 08:41:37,695 [INFO] Processing file: olist_orders_dataset_20260923.csv
+2026-09-23 08:41:38,225 [INFO] Successfully read file: olist_orders_dataset_20260923.csv with rows 99441
+2026-09-23 08:41:38,461 [INFO] Validation passed. Dataset is clean.
+2026-09-23 08:41:38,465 [INFO] Starting transformation step...
+2026-09-23 08:41:38,765 [INFO] Transformed dataset saved to C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean_20260923.parquet
+2026-09-23 08:41:38,848 [INFO] Starting Load step...
+2026-09-23 08:41:39,008 [INFO] Loaded data from C:\Users\sushm\OneDrive\Desktop\Data_engineering_project\Data-Engineering-Projects-\01-Python-ETL\data\silver\olist_orders_clean_20260923.parquet into DuckDB table 'orders'

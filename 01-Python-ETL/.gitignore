@@ -1,0 +1,7 @@
+node_modules/
+src/__pycache__/
+venv/
+.env
+package-lock.json
+package.json
+rough.py

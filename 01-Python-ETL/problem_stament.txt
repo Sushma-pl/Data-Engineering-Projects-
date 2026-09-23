@@ -1,0 +1,41 @@
+🛠️ Problem Statement (Production-Style ETL Pipeline)
+You are a data engineer at an e-commerce company.
+
+Every day, the company receives raw order data files (like the ones in the Olist dataset).
+
+These files are messy: they may have missing values, inconsistent formats, or errors.
+
+Analysts and business teams need clean, reliable data in a database or warehouse to run reports (sales, revenue, customer behavior).
+
+Your job:
+Build a Python ETL pipeline that:
+
+Extracts raw order data from daily files.
+
+Validates & Transforms the data (fix schema issues, clean timestamps, calculate derived fields).
+
+Loads the cleaned data into a database (e.g., PostgreSQL, MySQL, or even SQLite for practice).
+
+Runs automatically every day and keeps logs of what was processed.
+
+🎯 Business Goal
+Ensure that business teams always have accurate daily order data.
+
+Enable reporting on KPIs like:
+
+Daily sales totals
+
+Payment methods used
+
+Delivery times
+
+Customer satisfaction (reviews)
+
+🔑 Why This Matters
+In real companies, raw data is never directly usable.
+
+Analysts don’t want to deal with messy CSVs.
+
+Executives want dashboards updated daily.
+
+Data engineers make this possible by building robust pipelines that transform chaos into clean, structured data.
