@@ -1,7 +1,7 @@
 create table public.users (
     id serial primary key,
     name text,
-    emai text
+    email text
 );
 
 Alter table public.users Replica Identity FULL ;
