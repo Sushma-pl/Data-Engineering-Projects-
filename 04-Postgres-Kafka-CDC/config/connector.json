@@ -1,0 +1,18 @@
+{
+  "name": "shop-postgres-connector",
+  "config": {
+    "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+    "database.hostname": "postgres",
+    "database.port": "5432",
+    "database.user": "postgres",
+    "database.password": "postgres",
+    "database.dbname": "shop",
+    "topic.prefix": "shop",
+    "plugin.name": "pgoutput",
+    "slot.name": "shop_cdc_slot",
+    "publication.name": "shop_publication",
+    "publication.autocreate.mode": "filtered",
+    "table.include.list": "public.customers",
+    "snapshot.mode": "initial"
+  }
+}
