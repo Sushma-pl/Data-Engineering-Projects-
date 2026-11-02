@@ -1,0 +1,19 @@
+{
+    "name": "shopstream-connector",
+    "config": {
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "database.hostname": "postgres",
+        "database.port": "5432",
+        "database.user": "postgres",
+        "database.password": "postgres",
+        "database.dbname": "shop",
+        "topic.prefix": "shop",
+        "plugin.name": "pgoutput",
+        "slot.name": "shopstream_slot",
+        "publication.name": "shopstream_publication",
+        "publication.autocreate.mode": "filtered",
+        "table.include.list": "public.customers,public.orders",
+        "snapshot.mode": "initial",
+        "decimal.handling.mode": "string"
+  }
+}

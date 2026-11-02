@@ -1,0 +1,8 @@
+curl.exe -X POST http://localhost:8083/connectors `
+  -H "Content-Type: application/json" `
+  --data-binary "@connector/connector.json"
+
+
+curl.exe http://localhost:8083/connectors/shopstream-connector/status
+
+curl.exe http://localhost:8083/connectors/
