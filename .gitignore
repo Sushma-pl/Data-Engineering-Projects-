@@ -1,3 +1,20 @@
 03-Stream-Store/venv/
 04-Postgres-Kafka-CDC/consumer/.venv
 05-ShopStream/.venv
+06-airflow-local-lab/data
+
+# ShopStream — generated data (large files, not source code)
+05-ShopStream/data/
+
+# Spark Ivy cache (downloaded jars)
+05-ShopStream/.ivy2/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+
+# OS
+.DS_Store
+Thumbs.db
