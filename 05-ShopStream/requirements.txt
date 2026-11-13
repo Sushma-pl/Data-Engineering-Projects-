@@ -1,1 +1,14 @@
-psycopg2-binary 
+# Data generator
+psycopg2-binary==2.9.9
+
+# Tests
+pytest==8.3.2
+
+# PySpark + Delta (must be installed together — versions are paired)
+# See: https://docs.delta.io/latest/releases.html
+pyspark==3.5.1
+delta-spark==3.2.0
+
+# Note: kafka-python is NOT needed on the laptop.
+# Kafka reading is handled by Spark's built-in Kafka connector
+# downloaded at spark-submit time via --packages.

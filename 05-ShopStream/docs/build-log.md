@@ -160,3 +160,44 @@ id=1, amount=1500.00 (decimal ✅), updated_at=2026-11-02 04:54:12 (timestamp �
 | Stop Kafka Connect 5 minutes | Replication slot holds WAL, catches up on restart |
 | Delete Silver checkpoint + table | Replay from Bronze, same final result |
 | Stop Kafka, restart it | Silver pauses, resumes when Kafka is back |
+
+---
+
+## Day 4 — Refactor + MinIO prep
+
+### What I built
+
+**Extracted shared utilities into `spark/utils/`:**
+- `config.py` — all paths and credentials in one place. `STORAGE_MODE` env var switches between local and MinIO without touching any code.
+- `spark_session.py` — shared `get_spark_session()` function. Automatically adds S3/MinIO config when `STORAGE_MODE=minio`.
+
+**Updated all Spark files** to import from utils:
+- `bronze_stream.py` — no more hardcoded paths or SparkSession config
+- `silver_stream.py` — same
+- `gold_batch.py` — same
+- `check_bronze.py` — uses config paths, works in both local and MinIO mode
+- `check_silver.py` — same, now also shows total revenue
+
+**Added MinIO to docker-compose.yml:**
+- `shopstream_minio` container — S3-compatible local object storage
+- Port 9000: S3 API (used by Spark)
+- Port 9001: web console (used by humans)
+- `STORAGE_MODE=minio` added to Spark environment
+
+**Added reconciliation test to `tests/test_pipeline.py`:**
+- `test_silver_matches_postgres` — connects to Postgres directly, compares row count and sum(amount) against Silver Delta table
+- Run after stopping generator and waiting for Silver to catch up
+
+**Pinned all dependencies in `requirements.txt`**
+
+### Key decisions made
+- Kept local and MinIO as separate modes — switch with one env var, no code changes
+- Credentials in `config.py` read from environment variables (`os.getenv`) — can be overridden in production without changing code
+- Reconciliation test uses `abs(float(pg_sum) - silver_sum) < 0.01` — floating point tolerance for decimal comparison
+
+### What to run tomorrow
+1. `docker compose up -d` — now starts 5 services including MinIO
+2. Open `http://localhost:9001` — create bucket named `lake`
+3. Find Hadoop version: `find /opt/spark/jars -name "hadoop-common*.jar"`
+4. Run Bronze + Silver + Gold with `STORAGE_MODE=minio`
+5. Verify files appear in MinIO console

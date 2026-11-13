@@ -1,23 +1,28 @@
-from pyspark.sql import SparkSession
+import sys
+sys.path.insert(0, "/opt/spark-apps")
 
-spark = (SparkSession.builder
-    .appName("check_silver")
-    .config("spark.sql.extensions", "io.delta.sql.DeltaSparkSessionExtension")
-    .config("spark.sql.catalog.spark_catalog", "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-    .getOrCreate())
+from pyspark.sql import functions as F
+from utils.config import SILVER_PATH
+from utils.spark_session import get_spark_session
 
+spark = get_spark_session("check_silver")
 spark.sparkContext.setLogLevel("ERROR")
 
-df = spark.read.format("delta").load("/opt/spark-data/lake/silver/orders")
+df = spark.read.format("delta").load(SILVER_PATH)
 
-print("=== Silver Row Count ===")
+print(f"\n=== Silver ({SILVER_PATH}) ===")
+
+print("\n--- Row Count ---")
 print(df.count())
 
-print("\n=== Schema ===")
+print("\n--- Schema ---")
 df.printSchema()
 
-print("\n=== Sample Rows ===")
+print("\n--- Sample Rows ---")
 df.show(5, truncate=False)
 
-print("\n=== Status Distribution ===")
+print("\n--- Status Distribution ---")
 df.groupBy("status").count().orderBy("count", ascending=False).show()
+
+print("\n--- Total Revenue ---")
+df.agg(F.round(F.sum("amount"), 2).alias("total_revenue")).show()
