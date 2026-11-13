@@ -81,16 +81,40 @@ services:
   spark:
     image: apache/spark:3.5.1
     container_name: shopstream_spark
+    user: root
+    environment:
+      - PATH=/opt/spark/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+      - PYTHONPATH=/opt/spark/python:/opt/spark/python/lib/py4j-0.10.9.7-src.zip
+      - STORAGE_MODE=minio
     ports:
       - "4040:4040"
     command: sleep infinity
     volumes:
       - ./spark:/opt/spark-apps
       - ./data:/opt/spark-data
+      - ./tests:/opt/spark-tests
+      - ivy_cache:/root/.ivy2
     depends_on:
       - kafka
     restart: unless-stopped
-  
+
+
+  minio:
+    image: quay.io/minio/minio:latest
+    container_name: shopstream_minio
+    ports:
+      - "9000:9000"   # S3 API
+      - "9001:9001"   # MinIO web console
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    command: server /data --console-address ":9001"
+    volumes:
+      - minio_data:/data
+    restart: unless-stopped
+
 volumes:
   postgres_data:
   kafka_data:
+  minio_data:
+  ivy_cache:

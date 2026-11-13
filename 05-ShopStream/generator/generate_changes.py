@@ -69,4 +69,5 @@ while True:
     except Exception as e:
         print(f"Error on {action}: {e}")
 
-    time.sleep(random.uniform(0.3, 1.2))
+    # time.sleep(random.uniform(0.3, 1.2))
+    time.sleep(2)

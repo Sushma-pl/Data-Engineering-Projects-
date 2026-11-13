@@ -1,5 +1,6 @@
-from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
+from utils.config import BRONZE_PATH, CHECKPOINT_BASE, KAFKA_BOOTSTRAP
+from utils.spark_session import get_spark_session
 
 # ----------------------------------------------------------
 # BRONZE STREAM
@@ -7,26 +8,17 @@ from pyspark.sql import functions as F
 # as-is into a Delta table. No parsing, no transformation.
 # ----------------------------------------------------------
 
+CHECKPOINT = f"{CHECKPOINT_BASE}/bronze_orders"
 
-BRONZE_PATH = "/opt/spark-data/lake/bronze/orders"
-CHECKPOINT = "/opt/spark-data/checkpoints/bronze_orders"
-
-spark = (
-    SparkSession.builder
-    .appName("bronze_orders")
-    .config("spark.sql.extensions",
-            "io.delta.sql.DeltaSparkSessionExtension")
-    .config("spark.sql.catalog.spark_catalog",
-            "org.apache.spark.sql.delta.catalog.DeltaCatalog")
-    .getOrCreate()
-)
+spark = get_spark_session("bronze_orders")
+spark.sparkContext.setLogLevel("WARN")
 
 
 # Read data from kafka 
 raw = (
     spark.readStream
     .format("kafka")
-    .option("kafka.bootstrap.servers", "kafka:29092")
+    .option("kafka.bootstrap.servers", KAFKA_BOOTSTRAP)
     .option("subscribe", "shop.public.orders")
     .option("startingOffsets", "earliest")
     .option("failOnDataLoss", "true")
